@@ -1,12 +1,19 @@
-// Global objects of nodejs
 
-console.log(__dirname) // Dir name of the said file
+// File maniputlation
 
-console.log(__filename) // Path of the said file
 
-module.exports = someFunction(); // Used to export the function to other file
+const filesys = require("fs/promises")
 
-function someFunction(){
-    console.log("hello")
+async function demo(){
+    const file = await filesys.readFile("./demo.txt","utf8") //reading the file like in python
+    console.log(file)
+    await filesys.appendFile("./world.txt","Extra content added") //Appends the contents to world.txt file
+    // await filesys.unlink("./world1.txt") // It deletes the said file
+
+    await filesys.mkdir("NewFolder")
+    await filesys.appendFile("./NewFolder/newfile.txt","This is a new file")
+
 }
+
+demo();
 
